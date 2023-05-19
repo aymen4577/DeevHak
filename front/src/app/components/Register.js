@@ -63,7 +63,11 @@ const verificationCode = Date.now()
       name: username,
         email:email,
         code:verificationCode,
-        lien:"http://localhost:8081/emailverification/" + res._id,
+<<<<<<< HEAD
+        lien:"http://20.204.236.214:8081/emailverification/" + res._id,
+=======
+        lien:"http://20.204.236.214:8081/EmailVerification",
+>>>>>>> 51a5313352d22b26493e488ecdf0aea6de05844f
         }
         UserService.verfieremail(dataemail).then(
           (res)=>{
