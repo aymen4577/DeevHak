@@ -8,8 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install npm dependencies with legacy peer deps
-RUN npm install --legacy-peer-deps
-
+RUN npm install 
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
