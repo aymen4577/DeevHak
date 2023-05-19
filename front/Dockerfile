@@ -8,12 +8,14 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install npm dependencies with legacy peer deps
-RUN npm install --legacy-peer-deps
+RUN npm cache clear --force
+RUN npm install --force
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
 
 # Build the app
+
 RUN npm run build
 
 # Expose port 8081 for the app to listen on
