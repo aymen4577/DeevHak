@@ -57,7 +57,7 @@ const Login = () => {
 <div className="page-wraper">
 <div className="browse-job login-style3">
 <div className="login-form style-2">
-<div className="bg-img-fix overflow-hidden" style={{backgroundImage: 'url(images/background/bg6.jpg)', height: '100vh', backgroundRepeat:'no-repeat'}}>
+<div className="bg-img-fix overflow-hidden" style={{backgroundImage: 'url(images/background/bg6.jpg)', height: '90vh', backgroundRepeat:'no-repeat'}}>
 
         <div className="row gx-0">
             <div className="col-xl-4 col-lg-5 col-md-6 col-sm-12 vh-110 bg-white ">
@@ -139,21 +139,8 @@ const Login = () => {
   <path fillRule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
 </svg> </span>
                 </button>
-                  <Link  to={"/RestPassword"} className="">Forget Password ?</Link>
-                  </div> 
-              <h5 className="form-title fs-20">Sign In With</h5>   
-             
-              <div className="dz-social ">
-              
-              
-														<ul className="dz-social-icon dz-border dz-social-icon-lg text-white">
-															<li><Link  to={"https://www.facebook.com/"} className="fab fa-facebook-f btn-facebook"></Link></li>
-                              <li> <Link  to={"https://mail.google.com/"} className="fab fa-google-plus-g btn-google-plus"></Link></li>
-                             <li> <Link  to={"https://www.linkedin.com/"} className="fab fa-linkedin-in btn-linkedin"></Link></li>
-                             <li><Link  to={"https://twitter.com/"} className="fab fa-twitter btn-twitter"></Link></li>										
-														</ul>
-													</div>                    
-                                           
+                  
+                            </div>                        
               </Form>
               )}
               </Formik>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { createhackathon } from "../slices/tutorials";
+
 
 class Viewhackathon extends Component {
   constructor(props) {
@@ -168,4 +167,4 @@ class Viewhackathon extends Component {
   }
 }
 
-export default connect(null, { createhackathon })(Viewhackathon);
+export default (Viewhackathon);

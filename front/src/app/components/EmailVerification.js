@@ -1,11 +1,11 @@
 import React,{useEffect, useState} from "react";
-import { useParams} from 'react-router-dom';
+import { useParams,navigate,useNavigate} from 'react-router-dom';
 import UserService from "../services/user.service";
 function EmailVerification() {
-
 const params = useParams();
 const [user, setUser] = useState({});
 const [inputs, setInputs] = useState({});
+let navigate = useNavigate();
 const handleInputs = (event) =>{
   const {name, value} = event.target
   setInputs({...inputs, [name]: value})
@@ -22,28 +22,24 @@ useEffect(() => {
        console.log(error);
      });
  }, 
- );
+ [params.id]);
+const mise= async ()=>{
+  alert (params.id)
+  const data = {
+    state:"active"
+  }
+  await UserService.update(params.id , data).then((res)=>{
+   //navigate 
+   navigate("/Login"); 
 
- const verify = (req, res) => {
+  }).catch((error) => {
+    console.log(error);
+  });
+}
+ const verify = async (req, res) => {
   if (user.verificationCode === inputs.code) {
-    alert('exact');
-
-    UserService.put(user.id)
-      .then((user) => {
-        if (user) {
-          user.state = 'active';
-          user.save()
-            .then(() => res.json({ message: 'Email verified successfully' }))
-            .catch((err) =>
-              res.status(500).json({ error: 'Failed to verify email' })
-            );
-        } else {
-          res.status(400).json({ error: 'Invalid verification code' });
-        }
-      })
-      .catch((err) =>
-        res.status(500).json({ error: 'Failed to verify email' })
-      );
+     alert('exact');
+   await mise()
   } else {
     alert('noo');
   }

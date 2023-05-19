@@ -21,8 +21,8 @@ const verfieremail = (data) => {
 const get= (id) => {
   return http.get(`/test/info/${id}`);
 }
-const put= (id) => {
-  return http.put(`/test/update/${id}`);
+const update = (id, data) => {
+  return http.put(`/test/update/${id}`, data);
 }
 const UserService = {
   getPublicContent,
@@ -31,7 +31,7 @@ const UserService = {
   getAdminBoard,
   verfieremail,
   get,
-  put
+  update
 }
 
 export default UserService;

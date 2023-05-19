@@ -31,5 +31,5 @@ module.exports = function(app) {
   app.get(
     "/api/test/info/:id",controller.findOne
   );
-  app.put("api/test/update/:id",controller.update);
+  app.put("/api/test/update/:id",controller.update);
 };

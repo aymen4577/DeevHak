@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import TutorialDataService from "../services/tutorial.service";
 import QuizDataService from "../services/quiz.service";
-import hackathonDataService from "../services/hackathon.service";
 const initialState = [];
 
 export const createTutorial = createAsyncThunk(
@@ -11,13 +10,7 @@ export const createTutorial = createAsyncThunk(
     return res.data;
   }
 );
-export const createhackathon = createAsyncThunk(
-  "hackathones/create",
-  async ({Nom,Prenom,NumTel,Genre,Nationalite }) => {
-    const res = await hackathonDataService.create({ Nom,Prenom,NumTel,Genre,Nationalite  });
-    return res.data;
-  }
-);
+
 export const retrieveTutorials = createAsyncThunk(
   "tutorials/retrieve",
   async () => {
