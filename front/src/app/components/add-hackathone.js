@@ -127,7 +127,8 @@ this.state = {
 
                         <div className="card">
                             <div className="card-header">
-                                <h4 className="card-title">Ajouter Hackathon</h4>
+                         
+                                <h1 className="mb-4">Create Hackathons</h1>
                             </div>
           <div className="card-body">
                                 <div className="basic-form">

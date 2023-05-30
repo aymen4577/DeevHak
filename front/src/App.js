@@ -67,15 +67,7 @@ function App() {
 		</div>
     </div>
     <div id="main-wrapper">
-    <div className="nav-header">
-      <div className="nav-control">
-        <div className="hamburger">
-          <span className="line"></span>
-          <span className="line"></span>
-          <span className="line"></span>
-        </div>
-      </div>
-    </div>
+    
       <div className="header">
                        <div className="header-content">
                          <nav className="navbar navbar-expand">
@@ -211,7 +203,7 @@ function App() {
             <Route path="/formulair" element={<Formulair/>} />
             <Route path="/QuizList" element={<QuizList/>} />
            <Route path="/create" element={<CreateQuiz/>} />
-           <Route path="/emailverification/:id" element={<EmailVerification/>}/>
+           <Route path="/EmailVerification/:id" element={<EmailVerification/>}/>
            <Route path="/viewhackathon" element={<Viewhackathon/>}/>
             
             </Routes>

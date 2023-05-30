@@ -6,6 +6,16 @@ const BoardUser = () => {
 
   return (
   <>
+  
+  <div className="nav-header">
+  <div className="nav-control">
+    <div className="hamburger">
+      <span className="line"></span>
+      <span className="line"></span>
+      <span className="line"></span>
+    </div>
+  </div>
+</div>
 <div className="deznav">
 <div className="deznav-scroll">
     <ul className="metismenu" id="menu">
