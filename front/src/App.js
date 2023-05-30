@@ -21,7 +21,7 @@ import EventBus from "./app/common/EventBus";
 import EditProfile from "./app/components/EditProfile";
 
 import ListeAdmin from "./app/components/listeAdmin";
-import Quiz from "./app/components/Quiz";
+import Email from "./app/components/Email";
 import ViewAdmin from "./app/components/ViewAdmin";
 import Formulair from "./app/components/formulair";
 import EmailVerification from "./app/components/EmailVerification";
@@ -199,7 +199,7 @@ function App() {
             <Route path="/hackathons" element={<Hackathons/>} />
             <Route path="/ViewAdmin" element={<ViewAdmin/>} />
             <Route path="/listeAdmin" element={<ListeAdmin/>} />
-            <Route path="/Quiz" element={<Quiz/>} />
+            <Route path="/Email" element={<Email/>} />
             <Route path="/formulair" element={<Formulair/>} />
             <Route path="/QuizList" element={<QuizList/>} />
            <Route path="/create" element={<CreateQuiz/>} />
