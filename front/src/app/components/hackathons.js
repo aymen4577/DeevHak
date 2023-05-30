@@ -1,32 +1,44 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-} from "../slices/tutorials";
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
+} from "../slices/hackathones";
 import { Link } from "react-router-dom";
+import hackathoneDataService from "../services/hackathone.service";
 
-class Hackathons extends Component {
+class ListeAdmin extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.refreshData = this.refreshData.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
+    this.setActivHackathon = this.setActivHackathon.bind(this);
     this.findByTitle = this.findByTitle.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+    this.removeHackathon = this.removeHackathon.bind(this);
+    this.removeAllHackathones = this.removeAllHackathones.bind(this);
+   
 
     this.state = {
-      currentTutorial: null,
+      currentHackathon: {
+        id: null,
+        title: "",
+        description: "",
+        Numbre_Equipe:"",
+        NomEntriprise:"",
+        Date_début:"",
+        Date_fin:"",
+        Rules:"",
+        published: false,
+      },
       currentIndex: -1,
       searchTitle: "",
     };
   }
 
   componentDidMount() {
-    this.props.retrieveTutorials();
+    this.props.retrievehackathones();
   }
 
   onChangeSearchTitle(e) {
@@ -39,21 +51,20 @@ class Hackathons extends Component {
 
   refreshData() {
     this.setState({
-      currentTutorial: null,
+      currentHackathon: null,
       currentIndex: -1,
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActivHackathon(Hackathon, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currentHackathon: Hackathon,
       currentIndex: index,
     });
   }
-
-  removeAllTutorials() {
+  removeAllHackathones() {
     this.props
-      .deleteAllTutorials()
+      .deleteAllhackathones()
       .then((response) => {
         console.log(response);
         this.refreshData();
@@ -62,50 +73,62 @@ class Hackathons extends Component {
         console.log(e);
       });
   }
-
+  removeHackathon(id) {
+  
+    hackathoneDataService.delete(id)
+      .then(() => {
+       window.location.reload()
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   findByTitle() {
     this.refreshData();
 
-    this.props.findTutorialsByTitle({ title: this.state.searchTitle });
+    this.props.findhackathonesByTitle({ title: this.state.searchTitle });
   }
 
   render() {
-   
-    const { tutorials } = this.props;
-   
+    const { searchTitle } = this.state;
+    const { hackathons } = this.props;
+
     return (
-     
+    
       <div className="content-body">
     
   
-            <div className="container-fluid">  
+      <div className="container-fluid">  
   <div className="row ">
-
-  {tutorials &&
-              tutorials.map((tutorial) => (
+  
+  {hackathons &&
+        hackathons.map((Hackathon) => (
   <div className="col-xl-3 col-sm-6">
-						<div className="card box-hover ">
-							<div className="card-header">
-              <span>Title de Projet</span>	
-              <h5 className="text-primary mb-0 mt-1 text-end" >{tutorial.title}</h5>
-							</div>
-							<div className="card-body">
-							
-								
-										<span className="mb-2">NomEntriprise:</span>	
-                    <h6 className="text-end">{tutorial.NomEntriprise}</h6>
-							
-								
-							</div>
-							<div className="card-footer d-flex justify-content-between flex-wrap">
-								<Link to={"/formulair"}>
-								<button className="btn btn-primary"  >Ouvrir</button></Link>
-							</div>
-						</div>
-					</div>
-            ))}
-            
-    </div></div></div>
+      <div className="card box-hover ">
+        <div className="card-header">
+        <span>Title de Projet</span>	
+        <h5 className="text-primary mb-0 mt-1 text-end" >{Hackathon.title}</h5>
+        </div>
+        <div className="card-body">
+        
+          
+              <span className="mb-2">NomEntriprise:</span>	
+              <h6 className="text-end">{Hackathon.NomEntriprise}</h6>
+        
+          
+        </div>
+        <div className="card-footer d-flex justify-content-between flex-wrap">
+          <Link to={"/formulair"}>
+          <button className="btn btn-primary"  >Ouvrir</button></Link>
+        </div>
+      </div>
+    </div>
+      ))}
+      
+  </div></div></div>
+
+
+      
  );
 }
 
@@ -113,12 +136,13 @@ class Hackathons extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tutorials: state.tutorials,
+    hackathons: state.hackathons,
   };
 };
 
 export default connect(mapStateToProps, {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-})(Hackathons);
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
+})(ListeAdmin);

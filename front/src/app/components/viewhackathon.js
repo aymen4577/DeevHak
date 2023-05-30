@@ -54,7 +54,7 @@ class Viewhackathon extends Component {
     const { Nom,Prenom,NumTel,Genre,Nationalite } = this.state;
 
     this.props
-      .createTutorial({Nom,Prenom,NumTel,Genre,Nationalite})
+      .createhackathone({Nom,Prenom,NumTel,Genre,Nationalite})
       .unwrap()
       .then((data) => {
         this.setState({

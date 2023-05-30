@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { connect } from "react-redux";
-import { createTutorial } from "../slices/tutorials";
+import { createhackathone  } from "../slices/hackathones";
 
-class AddTutorial extends Component {
+class AddHackathone extends Component {
   constructor(props) {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -12,10 +12,10 @@ class AddTutorial extends Component {
     this.onChangeDate_fin = this.onChangeDate_fin.bind(this);
     this.onChangeNomEntriprise = this.onChangeNomEntriprise.bind(this);
     this.onChangeNumbre_Equipe = this.onChangeNumbre_Equipe.bind(this);
-    this.saveTutorial = this.saveTutorial.bind(this);
-    this.newTutorial = this.newTutorial.bind(this);
-
-    this.state = {
+    this.saveHackathon = this.saveHackathon.bind(this);
+    this.newHackathon = this.newHackathon.bind(this);
+   
+this.state = {
       id: null,
       title: "",
       description: "",
@@ -28,6 +28,7 @@ class AddTutorial extends Component {
       submitted: false,
     };
   }
+  
 
   onChangeTitle(e) {
     this.setState({
@@ -65,11 +66,11 @@ class AddTutorial extends Component {
       Date_fin: e.target.value,
     });
   }
-  saveTutorial() {
-    const { title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe } = this.state;
+  saveHackathon() {
+    const { title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe,image } = this.state;
 
     this.props
-      .createTutorial({title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe})
+      .createhackathone({title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe})
       .unwrap()
       .then((data) => {
         this.setState({
@@ -91,7 +92,7 @@ class AddTutorial extends Component {
       });
   }
 
-  newTutorial() {
+  newHackathon() {
     this.setState({
       id: null,
       title: "",
@@ -106,33 +107,34 @@ class AddTutorial extends Component {
     });
   }
 
+  
   render() {
     return (
       <div className="container mt-3">      
       <div className="content-body">
   
-                        <div class="card">
+                        <div className="card">
         {this.state.submitted ? (
           <div>
             <center>
             <h4>projet ajouté avec succès</h4>
-            <button className="btn btn-success" onClick={this.newTutorial}>
+            <button className="btn btn-success" onClick={this.newHackathon}>
               Add
             </button>
             </center>
           </div>
         ) : (
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Ajouter Hackathon</h4>
+                        <div className="card">
+                            <div className="card-header">
+                                <h4 className="card-title">Ajouter Hackathon</h4>
                             </div>
-          <div class="card-body">
-                                <div class="basic-form">
+          <div className="card-body">
+                                <div className="basic-form">
                 
            
-                <div class="row">
-                                            <div class="mb-3 col-md-6">
+                <div className="row">
+                                            <div className="mb-3 col-md-6">
               <label htmlFor="NomEntriprise">l'Entriprise </label>
               <input
                 type="text"
@@ -157,8 +159,8 @@ class AddTutorial extends Component {
               />
             </div>
    </div>
-   <div class="row">
-                                            <div class="mb-3 col-md-6">
+   <div className="row">
+                                            <div className="mb-3 col-md-6">
               <label htmlFor="Numbre_Equipe">Numbre_Equipe </label>
               <input
                 type="text"
@@ -185,8 +187,8 @@ class AddTutorial extends Component {
               />
             </div>
             </div>
-            <div class="row">
-                                            <div class="mb-3 col-md-6">
+            <div className="row">
+                                            <div className="mb-3 col-md-6">
             
                <label htmlFor="description">Date_début</label>
               <input
@@ -212,8 +214,8 @@ class AddTutorial extends Component {
               />
             </div>
             </div>
-            <div class="row">
-                                            <div class="mb-3 col-md-6">
+            <div className="row">
+              <div className="mb-3 col-md-6">
              
                <label htmlFor="description">Rules</label>
               <input
@@ -226,9 +228,14 @@ class AddTutorial extends Component {
                 name="rules"
               />
             </div>
+            <div className="form-group col-md-6">
+            <label htmlFor="description">Image</label>
+    <input type="file" class="form-control" aria-label="file example" required/>
+
+  </div>
             </div>
 
-            <button onClick={this.saveTutorial} className="btn btn-primary ">
+            <button onClick={this.saveHackathon} className="btn btn-primary ">
               Submit
             </button>
           </div></div></div>
@@ -238,4 +245,4 @@ class AddTutorial extends Component {
   }
 }
 
-export default connect(null, { createTutorial })(AddTutorial);
+export default connect(null, { createhackathone  })(AddHackathone);

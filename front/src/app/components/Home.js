@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
-import tutorialService from "../services/tutorial.service";
+import hackathonservice from "../services/hackathone.service";
 import quizService from "../services/quiz.service";
 const Home = () => { 
   const [count, setCount] = useState(0);
-  const [tutorials, setTutorials] = useState({});
+  const [hackathons, sethackathons] = useState({});
   const [use, setUse] = useState(0);
   const [user, setUsers] = useState({});
   const [quizz, setQuizs] = useState({});
   const [quiz, setQuiz] = useState(0);
 
   useEffect(() => {
-    tutorialService.getAll()
+    hackathonservice.getAll()
       .then((res) => {
         console.log('--------------------------------')
         console.log(res.data.length)
         console.log('--------------------------------')
-        setTutorials(res.data);
+        sethackathons(res.data);
         console.log(res.data.length);
         setCount(res.data.length)
       }).catch((err) => {
@@ -121,8 +121,8 @@ const Home = () => {
     <h5 className="mb-0">That Is project </h5>
    
   </div>
-  {/* {tutorials &&
-              tutorials.map((tutorial) => (
+  {/* {hackathons &&
+              hackathons.map((tutorial) => (
   <div className="col-xl-3 col-sm-6">
     <div className="card box-hover">
       <div className="card-header">
@@ -156,6 +156,7 @@ const Home = () => {
   </div>
  
  ))} */}
+      
 </div>
 
 </div>

@@ -9,6 +9,7 @@ module.exports = mongoose => {
       Numbre_Equipe:Number,
       Date_début:String,
       Date_fin:String,
+      image:String,
     },
     { timestamps: true }
   );
@@ -19,6 +20,6 @@ module.exports = mongoose => {
     return object;
   });
 
-  const Tutorial = mongoose.model("tutorial", schema);
-  return Tutorial;
+  const hackathon = mongoose.model("hackathones", schema);
+  return hackathon;
 };

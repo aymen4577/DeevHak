@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateTutorial, deleteTutorial } from "../slices/tutorials";
-import TutorialDataService from "../services/tutorial.service";
+import { updatehackathone, deletehackathone } from "../slices/hackathones";
+import hackathoneDataService from "../services/hackathone.service";
 import { withRouter } from '../common/with-router';
 
 
-class Tutorial extends Component {
+class hackathone extends Component {
   constructor(props) {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
@@ -15,13 +15,13 @@ class Tutorial extends Component {
     this.onChangeDate_début = this.onChangeDate_début.bind(this);
     this.onChangeDate_fin = this.onChangeDate_fin.bind(this);
     this.onChangeRules = this.onChangeRules.bind(this);
-    this.getTutorial = this.getTutorial.bind(this);
+    this.gethackathone = this.gethackathone.bind(this);
     this.updateStatus = this.updateStatus.bind(this);
     this.updateContent = this.updateContent.bind(this);
-    this.removeTutorial = this.removeTutorial.bind(this);
+    this.removehackathone = this.removehackathone.bind(this);
 
     this.state = {
-      currentTutorial: {
+      currenthackathone: {
         id: null,
         title: "",
         description: "",
@@ -37,15 +37,15 @@ class Tutorial extends Component {
   }
 
   componentDidMount() {
-    this.getTutorial(this.props.router.params.id);
+    this.gethackathone(this.props.router.params.id);
   }
 
   onChangeTitle(e) {
     const title = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         title: title,
       },
     }));
@@ -56,8 +56,8 @@ class Tutorial extends Component {
     const Description = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         description: Description,
       },
     }));
@@ -66,8 +66,8 @@ class Tutorial extends Component {
     const NomEntriprise = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         NomEntriprise: NomEntriprise,
       },
     }));
@@ -76,8 +76,8 @@ class Tutorial extends Component {
     const Numbre_Equipe = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         Numbre_Equipe: Numbre_Equipe,
       },
     }));
@@ -86,8 +86,8 @@ class Tutorial extends Component {
     const Date_début = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         Date_début: Date_début,
       },
     }));
@@ -96,8 +96,8 @@ class Tutorial extends Component {
     const Date_fin = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         
         Date_fin: Date_fin,
       },
@@ -107,17 +107,17 @@ class Tutorial extends Component {
     const Rules = e.target.value;
   
     this.setState((prevState) => ({
-      currentTutorial: {
-        ...prevState.currentTutorial,
+      currenthackathone: {
+        ...prevState.currenthackathone,
         Rules: Rules,
       },
     }));
   }
-  getTutorial(id) {
-    TutorialDataService.get(id)
+  gethackathone(id) {
+    hackathoneDataService.get(id)
       .then((response) => {
         this.setState({
-          currentTutorial: response.data,
+          currenthackathone: response.data,
         });
         console.log(response.data);
       })
@@ -128,21 +128,21 @@ class Tutorial extends Component {
 
   updateStatus(status) {
     var data = {
-      id: this.state.currentTutorial.id,
-      title: this.state.currentTutorial.title,
-      description: this.state.currentTutorial.description,
+      id: this.state.currenthackathone.id,
+      title: this.state.currenthackathone.title,
+      description: this.state.currenthackathone.description,
       published: status,
     };
 
     this.props
-      .updateTutorial({ id: this.state.currentTutorial.id, data })
+      .updatehackathone({ id: this.state.currenthackathone.id, data })
       .unwrap()
       .then((reponse) => {
         console.log(reponse);
 
         this.setState((prevState) => ({
-          currentTutorial: {
-            ...prevState.currentTutorial,
+          currenthackathone: {
+            ...prevState.currenthackathone,
             published: status,
           },
         }));
@@ -156,7 +156,7 @@ class Tutorial extends Component {
 
   updateContent() {
     this.props
-      .updateTutorial({ id: this.state.currentTutorial.id, data: this.state.currentTutorial })
+      .updatehackathone({ id: this.state.currenthackathone.id, data: this.state.currenthackathone })
       .unwrap()
       .then((reponse) => {
         console.log(reponse);
@@ -167,11 +167,11 @@ class Tutorial extends Component {
       });
   }
 
-  removeTutorial() {
+  removehackathone() {
     this.props
-      .deleteTutorial({ id: this.state.currentTutorial.id })
+      .deletehackathone({ id: this.state.currenthackathone.id })
       .then(() => {
-        this.props.router.navigate('/tutorials');
+        this.props.router.navigate('/hackathons');
       })
       .catch((e) => {
         console.log(e);
@@ -179,13 +179,13 @@ class Tutorial extends Component {
   }
 
   render() {
-    const { currentTutorial } = this.state;
+    const { currenthackathone } = this.state;
 
     return (
       <div className="container mt-3">      
       
       <div className="content-body">
-        {currentTutorial ? (
+        {currenthackathone ? (
         
         <div className="card">
         <div className="card-header">
@@ -200,7 +200,7 @@ class Tutorial extends Component {
   type="text"
   className="form-control"
   id="NomEntriprise"
-  value={this.state.currentTutorial.NomEntriprise}
+  value={this.state.currenthackathone.NomEntriprise}
   onChange={this.onChangeNomEntriprise}
 />
               </div>
@@ -210,7 +210,7 @@ class Tutorial extends Component {
   type="text"
   className="form-control"
   id="title"
-  value={this.state.currentTutorial.title}
+  value={this.state.currenthackathone.title}
   onChange={this.onChangeTitle}
 />
 
@@ -223,7 +223,7 @@ class Tutorial extends Component {
   type="text"
   className="form-control"
   id="Numbre_Equipe"
-  value={this.state.currentTutorial.Numbre_Equipe}
+  value={this.state.currenthackathone.Numbre_Equipe}
   onChange={this.onChangeNumbre_Equipe}
 />
               </div>
@@ -233,7 +233,7 @@ class Tutorial extends Component {
   type="text"
   className="form-control"
   id="description"
-  value={this.state.currentTutorial.description}
+  value={this.state.currenthackathone.description}
   onChange={this.onChangeDescription}
 />
               </div>
@@ -245,7 +245,7 @@ class Tutorial extends Component {
   type="Date"
   className="form-control"
   id="Date_debut"
-  value={this.state.currentTutorial.Date_début}
+  value={this.state.currenthackathone.Date_début}
   onChange={this.onChangeDate_début}
 />
               </div>
@@ -255,7 +255,7 @@ class Tutorial extends Component {
   type="Date"
   className="form-control"
   id="Date_fin"
-  value={this.state.currentTutorial.Date_fin}
+  value={this.state.currenthackathone.Date_fin}
   onChange={this.onChangeDate_fin}
 />
               </div>
@@ -267,7 +267,7 @@ class Tutorial extends Component {
   type="text"
   className="form-control"
   id="Rules"
-  value={this.state.currentTutorial.Rules}
+  value={this.state.currenthackathone.Rules}
   onChange={this.onChangeRules}
 />              
                          </div>
@@ -276,7 +276,7 @@ class Tutorial extends Component {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currenthackathone.published ? "Published" : "Pending"}
               </div>
            </div>
 
@@ -294,7 +294,7 @@ class Tutorial extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorial...</p>
+            <p>Please click on a hackathone...</p>
           </div>
         )}
       </div></div>
@@ -302,4 +302,4 @@ class Tutorial extends Component {
   }
 }
 
-export default connect(null, { updateTutorial, deleteTutorial })(withRouter(Tutorial));
+export default connect(null, { updatehackathone, deletehackathone })(withRouter(hackathone));

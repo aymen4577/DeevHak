@@ -6,10 +6,10 @@ module.exports = app => {
     // Create a new Quiz
     router.post("/", Quizs.create);
   
-    // Retrieve all Tutorials
+    // Retrieve all hackathons
     router.get("/", Quizs.findAll);
   
-    // Retrieve all published Tutorials
+    // Retrieve all published hackathons
     router.get("/published", Quizs.findAllPublished);
   
     // Retrieve a single Quiz with id

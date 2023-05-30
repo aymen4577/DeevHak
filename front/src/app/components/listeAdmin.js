@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-  deleteTutorial,
-} from "../slices/tutorials";
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
+} from "../slices/hackathones";
 import { Link } from "react-router-dom";
-import TutorialDataService from "../services/tutorial.service";
+import hackathoneDataService from "../services/hackathone.service";
+
 class ListeAdmin extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.refreshData = this.refreshData.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
+    this.setActivHackathon = this.setActivHackathon.bind(this);
     this.findByTitle = this.findByTitle.bind(this);
-    this.removeTutorial = this.removeTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+    this.removeHackathon = this.removeHackathon.bind(this);
+    this.removeAllHackathones = this.removeAllHackathones.bind(this);
    
 
     this.state = {
-      currentTutorial: {
+      currentHackathon: {
         id: null,
         title: "",
         description: "",
@@ -29,6 +30,7 @@ class ListeAdmin extends Component {
         Date_début:"",
         Date_fin:"",
         Rules:"",
+        image:"",
         published: false,
       },
       currentIndex: -1,
@@ -37,7 +39,7 @@ class ListeAdmin extends Component {
   }
 
   componentDidMount() {
-    this.props.retrieveTutorials();
+    this.props.retrievehackathones();
   }
 
   onChangeSearchTitle(e) {
@@ -50,20 +52,20 @@ class ListeAdmin extends Component {
 
   refreshData() {
     this.setState({
-      currentTutorial: null,
+      currentHackathon: null,
       currentIndex: -1,
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActivHackathon(Hackathon, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currentHackathon: Hackathon,
       currentIndex: index,
     });
   }
-  removeAllTutorials() {
+  removeAllHackathones() {
     this.props
-      .deleteAllTutorials()
+      .deleteAllhackathones()
       .then((response) => {
         console.log(response);
         this.refreshData();
@@ -72,9 +74,9 @@ class ListeAdmin extends Component {
         console.log(e);
       });
   }
-  removeTutorial(id) {
+  removeHackathon(id) {
   
-    TutorialDataService.delete(id)
+    hackathoneDataService.delete(id)
       .then(() => {
        window.location.reload()
       })
@@ -85,25 +87,24 @@ class ListeAdmin extends Component {
   findByTitle() {
     this.refreshData();
 
-    this.props.findTutorialsByTitle({ title: this.state.searchTitle });
+    this.props.findhackathonesByTitle({ title: this.state.searchTitle });
   }
 
   render() {
     const { searchTitle } = this.state;
-    const { tutorials } = this.props;
+    const { hackathons } = this.props;
 
     return (
     
       <div className="content-body">
       <div className="page-titles">
       <ol className="breadcrumb">
-        <li className=""><a href=";">Hacktons--- /</a></li>
-        <li className="breadcrumb-item active"><a href=";">list</a></li>
+        <li className=""><a href="">Hacktons--- /</a></li>
+        <li className="breadcrumb-item active"><a href="">list</a></li>
       </ol>
             </div>
 
-            <div className="container-fluid">  
-             
+            <div className="container-fluid">   
 <div className="element-area">
       <div className="demo-view">
         <div className="container-fluid pt-0 ps-0 pe-lg-0 pe-0">
@@ -150,36 +151,36 @@ class ListeAdmin extends Component {
                             <th>Date début</th>
                             <th>Date fin</th>
                             <th>Rules</th>
+                            <th>Image</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                        {tutorials &&
-          tutorials.map((tutorial) => (
+                        {hackathons &&
+          hackathons.map((Hackathon) => (
                           <tr>
                             <td><img className="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""/></td>
-                            <td> {tutorial.NomEntriprise}</td>
-                            <td>{tutorial.title}</td>
-                            <td>{tutorial.Numbre_Equipe}</td>
-                            <td>{tutorial.description}</td>
-                            <td>{tutorial.Date_début}</td>
-                            <td>{tutorial.Date_fin}</td>
-                            <td>{tutorial.Rules}</td>
+                            <td> {Hackathon.NomEntriprise}</td>
+                            <td>{Hackathon.title}</td>
+                            <td>{Hackathon.Numbre_Equipe}</td>
+                            <td>{Hackathon.description}</td>
+                            <td>{Hackathon.Date_début}</td>
+                            <td>{Hackathon.Date_fin}</td>
+                            <td>{Hackathon.Rules}</td>
+                            <td>{Hackathon.image}</td>
+                            
                             <td>
-                              <div className="dropdown ms-auto text-end c-pointer">
-															<div className="btn-link" data-bs-toggle="dropdown">
-																<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fillRule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
+                              <div class="dropdown ms-auto text-end c-pointer">
+															<div class="btn-link" data-bs-toggle="dropdown">
+																<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg>
 															</div>
-															<div className="dropdown-menu dropdown-menu-end">
-                              <div className="col-xl-3 col-xxl-4 col-lg-4 col-md-6">
-                        
-             
+															<div class="dropdown-menu dropdown-menu-end">
+                              <div class="col-xl-3 col-xxl-4 col-lg-4 col-md-6">
                     </div>
-                    
-                              <Link to={"/tutorials/" + tutorial.id} className="dropdown-item">Accept Patient</Link>
-                              <Link to={"/formulair"} className="dropdown-item">View Details</Link>
-                              <Link  onClick={()=>{this.removeTutorial(tutorial.id)}} className="dropdown-item" >Supprime</Link>
-																
+                                          
+                    <Link to={"/hackathone/" + Hackathon.id} class="dropdown-item">Accept Patient</Link>
+                              <Link to={"/formulair"} class="dropdown-item">View Details</Link>
+                              <Link  onClick={()=>{this.removeHackathon(Hackathon.id)}} class="dropdown-item" >Supprime</Link>
 															</div>
 														</div>												
                             </td>		
@@ -216,13 +217,13 @@ class ListeAdmin extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tutorials: state.tutorials,
+    hackathons: state.hackathons,
   };
 };
 
 export default connect(mapStateToProps, {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-  deleteTutorial,
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
 })(ListeAdmin);

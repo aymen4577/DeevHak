@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-} from "../slices/tutorials";
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+} from "../slices/hackathones";
 
 class ViewAdmin extends Component {
   constructor(props) {
@@ -13,17 +13,17 @@ class ViewAdmin extends Component {
     this.refreshData = this.refreshData.bind(this);
     this.setActiveTutorial = this.setActiveTutorial.bind(this);
     this.findByTitle = this.findByTitle.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+    this.removeAllhackathons = this.removeAllhackathons.bind(this);
 
     this.state = {
-      currentTutorial: null,
+      currenthackathons: null,
       currentIndex: -1,
       searchTitle: "",
     };
   }
 
   componentDidMount() {
-    this.props.retrieveTutorials();
+    this.props.retrievehackathones();
   }
 
   onChangeSearchTitle(e) {
@@ -36,21 +36,21 @@ class ViewAdmin extends Component {
 
   refreshData() {
     this.setState({
-      currentTutorial: null,
+      currenthackathons: null,
       currentIndex: -1,
     });
   }
 
   setActiveTutorial(tutorial, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currenthackathons: tutorial,
       currentIndex: index,
     });
   }
 
-  removeAllTutorials() {
+  removeAllhackathons() {
     this.props
-      .deleteAllTutorials()
+      .deleteAllhackathones()
       .then((response) => {
         console.log(response);
         this.refreshData();
@@ -63,12 +63,12 @@ class ViewAdmin extends Component {
   findByTitle() {
     this.refreshData();
 
-    this.props.findTutorialsByTitle({ title: this.state.searchTitle });
+    this.props.findhackathonesByTitle({ title: this.state.searchTitle });
   }
 
   render() {
-    const {currentTutorial, currentIndex } = this.state;
-    const { tutorials } = this.props;
+    const {currenthackathons, currentIndex } = this.state;
+    const { hackathones } = this.props;
 
     return (
 		<div className="container mt-3">
@@ -79,8 +79,8 @@ class ViewAdmin extends Component {
           <h4>List de ajouter </h4>
 
           <ul className="list-group">
-            {tutorials &&
-              tutorials.map((tutorial, index) => (
+            {hackathones &&
+              hackathones.map((tutorial, index) => (
                 <li
                   className={
                     "list-group-item " +
@@ -99,52 +99,52 @@ class ViewAdmin extends Component {
        <br/>
 	   
         <div className="col-md-8">
-          {currentTutorial ? (
+          {currenthackathons ? (
            <div>
            <h4 >hackathons ajouter</h4>
            <div>
              <label>
                <strong>Nom de Entriprise :</strong>
              </label>{" "}
-             {currentTutorial.NomEntriprise}
+             {currenthackathons.NomEntriprise}
            </div>
            <div>
              <label>
                <strong> Title de Projet:</strong>
              </label>{" "}
-             {currentTutorial.title}
+             {currenthackathons.title}
            </div>
            <div>
              <label>
                <strong>Number de Equipe :</strong>
              </label>{" "}
-             {currentTutorial.Numbre_Equipe}
+             {currenthackathons.Numbre_Equipe}
            </div>
 
            <div>
              <label>
                <strong>Description de Projet:</strong>
              </label>{" "}
-             {currentTutorial.description}
+             {currenthackathons.description}
            </div>
        
            <div>
              <label>
                <strong>Date début :</strong>
              </label>{" "}
-             {currentTutorial.Date_début}
+             {currenthackathons.Date_début}
            </div>
            <div>
              <label>
                <strong>Date fin :</strong>
              </label>{" "}
-             {currentTutorial.Date_fin}
+             {currenthackathons.Date_fin}
            </div>
            <div>
              <label>
                <strong>Rules :</strong>
              </label>{" "}
-             {currentTutorial.Rules}
+             {currenthackathons.Rules}
            </div>
          </div>
          
@@ -163,12 +163,12 @@ class ViewAdmin extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tutorials: state.tutorials,
+    hackathones: state.hackathones,
   };
 };
 
 export default connect(mapStateToProps, {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
 })(ViewAdmin);

@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-  deleteTutorial,
-} from "../slices/tutorials";
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
+} from "../slices/hackathones";
 import { Link } from "react-router-dom";
-import TutorialDataService from "../services/tutorial.service";
-class TutorialsList extends Component {
+import hackathoneDataService from "../services/hackathone.service";
+class hackathonesList extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.refreshData = this.refreshData.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
+    this.setActivehackathone = this.setActivehackathone.bind(this);
     this.findByTitle = this.findByTitle.bind(this);
-    this.removeTutorial = this.removeTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+    this.removehackathone = this.removehackathone.bind(this);
+    this.removeAllhackathones = this.removeAllhackathones.bind(this);
    
 
     this.state = {
-      currentTutorial: {
+      currenthackathone: {
         id: null,
         title: "",
         description: "",
@@ -37,7 +37,7 @@ class TutorialsList extends Component {
   }
 
   componentDidMount() {
-    this.props.retrieveTutorials();
+    this.props.retrievehackathones();
   }
 
   onChangeSearchTitle(e) {
@@ -50,20 +50,20 @@ class TutorialsList extends Component {
 
   refreshData() {
     this.setState({
-      currentTutorial: null,
+      currenthackathone: null,
       currentIndex: -1,
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActivehackathone(tutorial, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currenthackathone: tutorial,
       currentIndex: index,
     });
   }
-  removeAllTutorials() {
+  removeAllhackathones() {
     this.props
-      .deleteAllTutorials()
+      .deleteAllhackathones()
       .then((response) => {
         console.log(response);
         this.refreshData();
@@ -72,9 +72,9 @@ class TutorialsList extends Component {
         console.log(e);
       });
   }
-  removeTutorial(id) {
+  removehackathone(id) {
   
-    TutorialDataService.delete(id)
+    hackathoneDataService.delete(id)
       .then(() => {
        window.location.reload()
       })
@@ -85,12 +85,12 @@ class TutorialsList extends Component {
   findByTitle() {
     this.refreshData();
 
-    this.props.findTutorialsByTitle({ title: this.state.searchTitle });
+    this.props.findhackathonesByTitle({ title: this.state.searchTitle });
   }
 
   render() {
     const { searchTitle } = this.state;
-    const { tutorials } = this.props;
+    const { hackathons } = this.props;
 
     return (
       <>
@@ -150,21 +150,21 @@ class TutorialsList extends Component {
 															</tr>
 														</thead>
 														<tbody>
-                            {tutorials &&
-              tutorials.map((tutorial) => (
+                            {hackathons &&
+              hackathons.map((Hackathon) => (
 															<tr>
 																<td><img className="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""/></td>
-																<td> {tutorial.NomEntriprise}</td>
-																<td>{tutorial.title}</td>
-																<td>{tutorial.Numbre_Equipe}</td>
-                                <td>{tutorial.description}</td>
-                                <td>{tutorial.Date_début}</td>
-                                <td>{tutorial.Date_fin}</td>
-                                <td>{tutorial.Rules}</td>
+																<td> {Hackathon.NomEntriprise}</td>
+																<td>{Hackathon.title}</td>
+																<td>{Hackathon.Numbre_Equipe}</td>
+                                <td>{Hackathon.description}</td>
+                                <td>{Hackathon.Date_début}</td>
+                                <td>{Hackathon.Date_fin}</td>
+                                <td>{Hackathon.Rules}</td>
 																<td>
 																	<div className="d-flex">
-																		<Link to={"/tutorials/" + tutorial.id} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fas fa-pencil-alt"></i></Link>
-               <button  onClick={()=>{this.removeTutorial(tutorial.id)}} className="btn btn-danger shadow btn-xs sharp" ><i className="fa fa-trash"></i></button>
+																		<Link to={"/hackathone/" + Hackathon.id} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fas fa-pencil-alt"></i></Link>
+               <button  onClick={()=>{this.removehackathone(Hackathon.id)}} className="btn btn-danger shadow btn-xs sharp" ><i className="fa fa-trash"></i></button>
 																	</div>												
 																</td>		
                      									
@@ -197,13 +197,13 @@ class TutorialsList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tutorials: state.tutorials,
+    hackathons: state.hackathons,
   };
 };
 
 export default connect(mapStateToProps, {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-  deleteTutorial,
-})(TutorialsList);
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
+})(hackathonesList);

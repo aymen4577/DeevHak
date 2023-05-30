@@ -19,7 +19,7 @@ const BoardModerator = () => {
             </Link>
         </li>
         <li>
-            <Link to={"#"} className="nav-link">
+            <Link to={";"} className="nav-link">
             
         
             <div className="menu-icon">
@@ -48,7 +48,7 @@ const BoardModerator = () => {
         </Link>
         </li>
         
-<li><Link to={"/EmailVerification"} className="nav-link">
+<li><Link to={"/hackathonesList"} className="nav-link">
 
             <div className="menu-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">

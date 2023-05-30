@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-  deleteTutorial,
-} from "../slices/tutorials";
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
+} from "../slices/hackathones";
 import { Link } from "react-router-dom";
-import TutorialDataService from "../services/tutorial.service";
+import hackathoneDataService from "../services/hackathone.service";
 class Formulair extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.refreshData = this.refreshData.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
+
     this.findByTitle = this.findByTitle.bind(this);
-    this.removeTutorial = this.removeTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
+   
+    this.removeAllhackathons = this.removeAllhackathons.bind(this);
    
 
     this.state = {
-      currentTutorial: {
+      currenthackathons: {
         id: null,
         title: "",
         description: "",
@@ -37,7 +37,7 @@ class Formulair extends Component {
   }
 
   componentDidMount() {
-    this.props.retrieveTutorials();
+    this.props.retrievehackathones();
   }
 
   onChangeSearchTitle(e) {
@@ -50,20 +50,20 @@ class Formulair extends Component {
 
   refreshData() {
     this.setState({
-      currentTutorial: null,
+      currenthackathons: null,
       currentIndex: -1,
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActiveTutorial(Hackathon, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currenthackathons: Hackathon,
       currentIndex: index,
     });
   }
-  removeAllTutorials() {
+  removeAllhackathons() {
     this.props
-      .deleteAllTutorials()
+      .deleteAllhackathones()
       .then((response) => {
         console.log(response);
         this.refreshData();
@@ -72,9 +72,9 @@ class Formulair extends Component {
         console.log(e);
       });
   }
-  removeTutorial(id) {
+  removeHackathon(id) {
   
-    TutorialDataService.delete(id)
+    hackathoneDataService.delete(id)
       .then(() => {
        window.location.reload()
       })
@@ -85,12 +85,12 @@ class Formulair extends Component {
   findByTitle() {
     this.refreshData();
 
-    this.props.findTutorialsByTitle({ title: this.state.searchTitle });
+    this.props.findhackathonesByTitle({ title: this.state.searchTitle });
   }
 
   render() {
    
-    const { tutorials } = this.props;
+    const { hackathons } = this.props;
 
     return (
       <>
@@ -106,8 +106,8 @@ class Formulair extends Component {
                             
                             <div className="col-lg-10 col-xxl-9">
                                 <div className="email-right-box">
-                                {tutorials &&
-              tutorials.map((tutorial) => (
+                                {hackathons &&
+              hackathons.map((Hackathon) => (
                                     <div className="row">
                                         <div className="col-12">
                                             <div className="right-box-padding p-12">
@@ -118,7 +118,7 @@ class Formulair extends Component {
                                                             <img className="me-3 rounded" width="70" height="70" alt="Company Logo" src="DH.png" />
 
                                                                 <div className="media-body me-2">
-                                                                    <h5 className="text-primary mb-0 mt-1">{tutorial.NomEntriprise}</h5>
+                                                                    <h5 className="text-primary mb-0 mt-1">{Hackathon.NomEntriprise}</h5>
                                                                     <p className="mb-0">NomEntriprise</p>
                                                                 </div>
                                                             </div>
@@ -127,22 +127,22 @@ class Formulair extends Component {
                                                         <hr/>
                                                         <div className="media mb-2 mt-3">
                                                             <div className="media-body"><span className="pull-end">Title de Projet</span>
-                                                                <h5 className="my-1 text-primary">{tutorial.title}</h5>
+                                                                <h5 className="my-1 text-primary">{Hackathon.title}</h5>
                                                                 <hr/>        
                                                                 <p className="text-end"><strong>Date de Projet :</strong></p>
                                                                 <p className="text-end">
-                                                                Date début : {tutorial.Date_début}</p>
+                                                                Date début : {Hackathon.Date_début}</p>
                                                                 <p className="text-end">
-                                                                Date Fin : {tutorial.Date_fin}</p>
+                                                                Date Fin : {Hackathon.Date_fin}</p>
                                                             </div>
                                                         </div>
                                                         <hr/>
                                                         <div className="read-content-body">
                                                             
-                                                            <p className="mb-2"><strong>Description de Projet :</strong> {tutorial.description}</p>
+                                                            <p className="mb-2"><strong>Description de Projet :</strong> {Hackathon.description}</p>
                                                          <hr/>
                                                         </div>
-                                                        <p className="mb-2"><strong>Membre de Projet :</strong> {tutorial.Numbre_Equipe}</p>
+                                                        <p className="mb-2"><strong>Membre de Projet :</strong> {Hackathon.Numbre_Equipe}</p>
                                                         <hr/>
                                                      
                                                     </div>
@@ -176,13 +176,13 @@ class Formulair extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    tutorials: state.tutorials,
+    hackathons: state.hackathons,
   };
 };
 
 export default connect(mapStateToProps, {
-  retrieveTutorials,
-  findTutorialsByTitle,
-  deleteAllTutorials,
-  deleteTutorial,
+  retrievehackathones,
+  findhackathonesByTitle,
+  deleteAllhackathones,
+  deletehackathone,
 })(Formulair);

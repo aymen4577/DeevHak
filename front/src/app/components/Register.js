@@ -55,19 +55,13 @@ const verificationCode = Date.now()
     dispatch(register({ username, email, password,roles,verificationCode }))
       .unwrap()
       .then((res) => {
-        console.log('idddddddddddddddddddddddddddd')
         console.log(res._id)
-        console.log('idddddddddddddddddddddddddddd')
         //mail (to, text "ujnkhhgjk ")
        const dataemail={  
       name: username,
         email:email,
         code:verificationCode,
-<<<<<<< HEAD
-        lien:"http://20.204.236.214:8081/emailverification/" + res._id,
-=======
-        lien:"http://20.204.236.214:8081/EmailVerification",
->>>>>>> 51a5313352d22b26493e488ecdf0aea6de05844f
+        lien:"http://20.207.87.14:8081/emailverification/" + res._id,
         }
         UserService.verfieremail(dataemail).then(
           (res)=>{

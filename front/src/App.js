@@ -11,9 +11,9 @@ import Profile from "./app/components/Profile";
 import BoardUser from "./app/components/BoardUser";
 import BoardModerator from "./app/components/BoardModerator";
 import BoardAdmin from "./app/components/BoardAdmin";
-import Tutorial from "./app/components/tutorialcomponent";
-import TutorialsList from "./app/components/tutorials-listcomponent";
-import AddTutorial from "./app/components/add-tutorialcomponent";
+import Hackathone from "./app/components/hackathons-update";
+import HackathonsList from "./app/components/hackathons-list";
+import AddHackathone from "./app/components/add-hackathone";
 import Hackathons from "./app/components/hackathons";
 import { logout } from "./app/slices/auth";
 
@@ -199,10 +199,10 @@ function App() {
             <Route path="/user" element={<BoardUser />} />
             <Route path="/mod" element={<BoardModerator />} />
             <Route path="/admin" element={<BoardAdmin />} />
-            <Route path="/" element={<TutorialsList/>} />
-            <Route path="/tutorials" element={<TutorialsList/>} />
-            <Route path="/add" element={<AddTutorial/>} />
-            <Route path="/tutorials/:id" element={<Tutorial/>} />
+            <Route path="/" element={<hackathonsList/>} />
+            <Route path="/hackathonesList" element={<HackathonsList/>} />
+            <Route path="/add" element={<AddHackathone/>} />
+            <Route path="/hackathone/:id" element={<Hackathone/>} />
             <Route path="/EditProfile" element={<EditProfile/>} />
             <Route path="/hackathons" element={<Hackathons/>} />
             <Route path="/ViewAdmin" element={<ViewAdmin/>} />
