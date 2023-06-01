@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+      - image: godzella007/frontend:latest
+        name: frontend-container
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: REACT_APP_BACKEND_URL
+          value: http://20.219.178.245:5000
+---
+
+apiVersion: apps/v1    
+kind: Deployment
+metadata:
+  name: todo-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+      - image: godzella007/backend:latest
+        name: backend-container
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: atlas-credentials
+              key: connectionString
+        imagePullPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-frontend-service
+  labels:
+    app: frontend-app
+spec:
+  selector:
+    app: frontend-app
+  type: LoadBalancer
+  loadBalancerIP: 20.207.87.14
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8081
+    targetPort: 8081
+    nodePort: 30010
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-backend-service
+  labels:
+    app: backend-app
+spec:
+  selector:
+    app: backend-app
+  type: LoadBalancer 
+  loadBalancerIP: 20.219.178.245
+  ports:
+  - name: http
+    protocol: TCP
+    port: 5000
+    targetPort: 5000
+    nodePort: 30020

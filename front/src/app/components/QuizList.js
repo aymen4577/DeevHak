@@ -48,7 +48,7 @@ function QuizList() {
 
 </ul>
 <button onClick={()=>{removeQuiz(quizzes.id)}} className="btn btn-danger " >Dellet</button>
-
+<button  className="btn btn-success " >Update</button>
     </div></div>
   );
 }
