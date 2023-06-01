@@ -17,9 +17,11 @@ exports.signup = (req, res) => {
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
-      return;
-    }
 
+      return;
+      
+    }
+    res.send({ message: "User was registered successfully!" });
     if (req.body.roles) {
       Role.find(
         {
@@ -28,6 +30,7 @@ exports.signup = (req, res) => {
         (err, roles) => {
           if (err) {
             res.status(500).send({ message: err });
+            
             return;
           }
 

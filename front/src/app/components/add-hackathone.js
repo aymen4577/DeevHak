@@ -1,21 +1,12 @@
-import React, { Component, useState } from "react";
-import { connect } from "react-redux";
-import { createhackathone  } from "../slices/hackathones";
+import React, { useState } from "react";
 
-class AddHackathone extends Component {
-  constructor(props) {
-    super(props);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeRules = this.onChangeRules.bind(this);
-    this.onChangeDate_début = this.onChangeDate_début.bind(this);
-    this.onChangeDate_fin = this.onChangeDate_fin.bind(this);
-    this.onChangeNomEntriprise = this.onChangeNomEntriprise.bind(this);
-    this.onChangeNumbre_Equipe = this.onChangeNumbre_Equipe.bind(this);
-    this.saveHackathon = this.saveHackathon.bind(this);
-    this.newHackathon = this.newHackathon.bind(this);
-   
-this.state = {
+import hackathoneDataService from "../services/hackathone.service";
+
+
+const AddHackathone = ()=>  {
+  const [file, setFile] = useState();
+ 
+const intialHack= {
       id: null,
       title: "",
       description: "",
@@ -27,98 +18,83 @@ this.state = {
       published: false,
       submitted: false,
     };
-  }
-  
-
-  onChangeTitle(e) {
-    this.setState({
-      title: e.target.value,
-    });
-  }
-
-  onChangeDescription(e) {
-    this.setState({
-      description: e.target.value,
-    });
-  }
-  onChangeRules(e) {
-    this.setState({
-      Rules : e.target.value,
-    });
-  }
-  onChangeNomEntriprise(e){
-    this.setState({
-      NomEntriprise :e.target.value,
-    });
-  }
-  onChangeNumbre_Equipe(e){
-    this.setState({
-     Numbre_Equipe: e.target.value, 
-    });
-  }
-  onChangeDate_début(e) {
-    this.setState({
-      Date_début: e.target.value,
-    });
-  }
-  onChangeDate_fin(e) {
-    this.setState({
-      Date_fin: e.target.value,
-    });
-  }
-  saveHackathon() {
-    const { title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe,image } = this.state;
-
-    this.props
-      .createhackathone({title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe})
-      .unwrap()
-      .then((data) => {
-        this.setState({
-          id: data.id,
-          title: data.title,
-          description: data.description,
-          Rules: data.Rules,
-          Date_début: data.Date_début,
-          Date_fin: data.Date_fin,
-          NomEntriprise:data.NomEntriprise,
-          Numbre_Equipe:data.Numbre_Equipe,
-          published: data.published,
-          submitted: true,
-        });
-        console.log(data);
-      })
-      .catch((e) => {
-        console.log(e);
+    const [hack, setHack] = useState(intialHack)
+    const newTutorial=()=> {
+      this.setState({
+        id: null,
+        title: "",
+        description: "",
+        Rules: "",
+        Date_début: "",
+        Date_fin:"",
+        Numbre_Equipe:"",
+        NomEntriprise:"",
+        published: false,
+        submitted: false,
       });
+    }
+ const onChangeImage = (e) =>{
+    setFile(e.target.files[0]);
   }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setHack({ ...hack, [name]: value });
+    console.log(hack);
+  };
+  const saveHackathon = () => {
+    // console.log(hack)
+    const formData = new FormData()
 
-  newHackathon() {
-    this.setState({
-      id: null,
-      title: "",
-      description: "",
-      Rules: "",
-      Date_début: "",
-      Date_fin:"",
-      Numbre_Equipe:"",
-      NomEntriprise:"",
-      published: false,
-      submitted: false,
-    });
+    formData.append("file", file)
+    formData.append("title", hack.title)
+    formData.append("description", hack.description)
+    formData.append("Rules", hack.Rules)
+    formData.append("Date_début", hack.Date_début)
+    formData.append("Date_fin", hack.Date_fin)
+    formData.append("NomEntriprise", hack.NomEntriprise)
+    formData.append("Numbre_Equipe", hack.Numbre_Equipe)
+    for (var key of formData.entries()) {
+      console.log(key[0] + ', ' + key[1]);
   }
+  
+    try{  
+       hackathoneDataService.create(formData).then((data) => {
+    
+     setHack({
+        id: data.id,
+        title: data.title,
+        description: data.description,
+        Rules: data.Rules,
+        Date_début: data.Date_début,
+        Date_fin: data.Date_fin,
+        NomEntriprise:data.NomEntriprise,
+        Numbre_Equipe:data.Numbre_Equipe,
+        image: data.image,
+        published: data.published,
+        submitted: true,
+      });
+      console.log(data);
+      
+    })
+    .catch((e) => {
+      console.log(e);
+    })} catch(err){console.log(err)}
+ 
+  }
+ 
 
   
-  render() {
+ 
     return (
       <div className="container mt-3">      
       <div className="content-body">
   
                         <div className="card">
-        {this.state.submitted ? (
+        {hack.submitted ? (
           <div>
             <center>
             <h4>projet ajouté avec succès</h4>
-            <button className="btn btn-success" onClick={this.newHackathon}>
+            <button className="btn btn-success" onClick={this.newTutorial}>
               Add
             </button>
             </center>
@@ -142,8 +118,8 @@ this.state = {
                 className="form-control"
                 id="NomEntriprise"
                 required
-                value={this.state.NomEntriprise}
-                onChange={this.onChangeNomEntriprise}
+                value={hack.NomEntriprise}
+                onChange={handleInputChange}
                 name="NomEntriprise"
               />
             </div>
@@ -154,8 +130,8 @@ this.state = {
                 className="form-control"
                 id="title"
                 required
-                value={this.state.title}
-                onChange={this.onChangeTitle}
+                value={hack.title}
+                onChange={handleInputChange}
                 name="title"
               />
             </div>
@@ -168,8 +144,8 @@ this.state = {
                 className="form-control"
                 id="Numbre_Equipe"
                 required
-                value={this.state.Numbre_Equipe}
-                onChange={this.onChangeNumbre_Equipe}
+                value={hack.Numbre_Equipe}
+                onChange={handleInputChange}
                 name="Numbre_Equipe"
               />
             </div>
@@ -182,8 +158,8 @@ this.state = {
                 className="form-control"
                 id="description"
                 required
-                value={this.state.description}
-                onChange={this.onChangeDescription}
+                value={hack.description}
+                onChange={handleInputChange}
                 name="description"
               />
             </div>
@@ -197,8 +173,8 @@ this.state = {
                 className="form-control"
                 id="Date_début"
                 required
-                value={this.state.Date_début}
-                onChange={this.onChangeDate_début}
+                value={hack.Date_début}
+                onChange={handleInputChange}
                 name="Date_début"
               />
             </div>
@@ -209,8 +185,8 @@ this.state = {
                 className="form-control"
                 id="Date_fin"
                 required
-                value={this.state.Date_fin}
-                onChange={this.onChangeDate_fin}
+                value={hack.Date_fin}
+                onChange={handleInputChange}
                 name="Date_fin"
               />
             </div>
@@ -224,26 +200,26 @@ this.state = {
                 className="form-control"
                 id="rules"
                 required
-                value={this.state.Rules}
-                onChange={this.onChangeRules}
-                name="rules"
+                value={hack.Rules}
+                onChange={handleInputChange}
+                name="Rules"
               />
             </div>
             <div className="form-group col-md-6">
             <label htmlFor="description">Image</label>
-    <input type="file" class="form-control" aria-label="file example" required/>
+     <input type="file" class="form-control"  name='image'  onChange={onChangeImage} accept='image/x-png, image/gif, image.jpeg, image/jpg' required/> 
 
   </div>
             </div>
 
-            <button onClick={this.saveHackathon} className="btn btn-primary ">
+            <button onClick={saveHackathon} className="btn btn-primary ">
               Submit
             </button>
           </div></div></div>
         )}
       </div></div></div>
     );
-  }
+  
 }
 
-export default connect(null, { createhackathone  })(AddHackathone);
+export default AddHackathone;

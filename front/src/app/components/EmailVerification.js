@@ -52,7 +52,7 @@ function EmailVerification() {
   };
 
   return (
-    <div className="container mt-3">
+    <div>
       <div className="content-body">
      
             <form onSubmit={verify}>

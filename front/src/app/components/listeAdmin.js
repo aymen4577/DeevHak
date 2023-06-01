@@ -159,7 +159,7 @@ class ListeAdmin extends Component {
                         {hackathons &&
           hackathons.map((Hackathon) => (
                           <tr>
-                            <td><img className="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""/></td>
+                            <td><img className="rounded-circle" width="35" src={Hackathon.image} alt=""/></td>
                             <td> {Hackathon.NomEntriprise}</td>
                             <td>{Hackathon.title}</td>
                             <td>{Hackathon.Numbre_Equipe}</td>
@@ -180,7 +180,7 @@ class ListeAdmin extends Component {
                                           
                     <Link to={"/hackathone/" + Hackathon.id} class="dropdown-item">Accept Patient</Link>
                               <Link to={"/formulair"} class="dropdown-item">View Details</Link>
-                              <Link  onClick={()=>{this.removeHackathon(Hackathon.id)}} class="dropdown-item" >Supprime</Link>
+                              <Link  onClick={()=>{this.removeAllHackathones(Hackathon.id)}} class="dropdown-item" >Supprime</Link>
 															</div>
 														</div>												
                             </td>		

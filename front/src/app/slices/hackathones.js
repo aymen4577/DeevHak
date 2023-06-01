@@ -5,8 +5,8 @@ const initialState = [];
 
 export const createhackathone = createAsyncThunk(
   "hackathones/create",
-  async ({  title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe  }) => {
-    const res = await hackathoneDataService.create({ title, description,Rules,Date_début,Date_fin,NomEntriprise,Numbre_Equipe  });
+  async (data) => {
+    const res = await hackathoneDataService.create(data);
     return res.data;
   }
 );

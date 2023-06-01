@@ -99,12 +99,8 @@ function App() {
                                              <span>{currentUser.mail}</span>	
                                            </div>
                                          </div>
-                                       </div>
-                                       
-                                       
-                                      
-                                         
-                                                        <div className="card-footer px-0 py-2">
+                                       </div>         
+                                                      <div className="card-footer px-0 py-2">
                                       
                                        <li className="nav-item">
                 <a href="/login" className="nav-link" >

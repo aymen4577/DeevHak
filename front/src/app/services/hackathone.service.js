@@ -10,7 +10,7 @@ class HackathoneDataService {
   }
 
   create(data) {
-    return http.post("/hackathones", data);
+    return http.post("/hackathones/", data);
   }
 
   update(id, data) {

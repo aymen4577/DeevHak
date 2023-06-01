@@ -8,7 +8,7 @@ module.exports = mongoose => {
       NomEntriprise:String,
       Numbre_Equipe:Number,
       Date_début:String,
-      Date_fin:String,
+      Date_fin:String, 
       image:String,
     },
     { timestamps: true }

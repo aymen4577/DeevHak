@@ -153,7 +153,7 @@ class hackathonesList extends Component {
                             {hackathons &&
               hackathons.map((Hackathon) => (
 															<tr>
-																<td><img className="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""/></td>
+																<td><img className="rounded-circle" width="35" src={Hackathon.image} alt=""/></td>
 																<td> {Hackathon.NomEntriprise}</td>
 																<td>{Hackathon.title}</td>
 																<td>{Hackathon.Numbre_Equipe}</td>
