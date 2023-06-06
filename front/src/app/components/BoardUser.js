@@ -49,7 +49,7 @@ const BoardUser = () => {
             </ul>
         </li>
      
-        <li><Link to={"/hackathons"} className="nav-link">
+        <li><Link to={"/formulair"} className="nav-link">
             
         
             <div className="menu-icon">
