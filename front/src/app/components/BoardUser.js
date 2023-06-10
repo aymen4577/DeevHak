@@ -61,7 +61,7 @@ const BoardUser = () => {
             <span className="nav-text">Hackathons</span>
         </Link>
         </li>
-        <li><Link to={"/Quiz"} className="nav-link">
+        <li><Link to={"/quiz"} className="nav-link">
             
         
             <div className="menu-icon">
