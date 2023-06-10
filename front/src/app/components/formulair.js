@@ -148,7 +148,7 @@ class Formulair extends Component {
                                                     </div>
                                                     <div className="text-end">
                                                         <Link to={"/back"}>
-                                                        <button className="btn btn-primary " type="button">Send</button></Link>
+                                                        <button className="btn btn-primary " type="button">Participer</button></Link>
                                                         
                                                     </div>
                                                 </div>
