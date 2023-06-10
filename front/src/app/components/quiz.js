@@ -1,14 +1,16 @@
-// Quiz.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import quizService from "../services/quiz.service";
-function Quiz() {
+
+function QuizList() {
   const [quizzes, setQuizzes] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [score, setScore] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [score, setScore] = useState(0);
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
-    quizService.getAll()
+    quizService
+      .getAll()
       .then((response) => {
         setQuizzes(response.data);
       })
@@ -16,49 +18,88 @@ function Quiz() {
         console.log(error);
       });
   }, []);
-  
 
-  const handleAnswer = (answer) => {
-    setAnswers([...answers, answer]);
-    if (currentQuestion === quizzes.length - 1) {
-      submitQuiz();
-    } else {
-      setCurrentQuestion(currentQuestion + 1);
+  const handleAnswerChange = (event) => {
+    setSelectedAnswer(event.target.value);
+  };
+
+  const handleNextQuestion = () => {
+    const currentQuiz = quizzes[currentQuestion];
+    if (selectedAnswer === currentQuiz.answer) {
+      setScore(score + 1);
+    }
+    setSelectedAnswer("");
+    setCurrentQuestion(currentQuestion + 1);
+  };
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
     }
   };
 
-  const submitQuiz = () => {
-    quizService.submit(answers)
-      .then((response) => {
-        setScore(response.data.score);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleFinish = () => {
+    const currentQuiz = quizzes[currentQuestion];
+    if (selectedAnswer === currentQuiz.answer) {
+      setScore(score + 1);
+    }
+    setFinished(true);
   };
-  
-
-  if (quizzes.length === 0) {
-    return <div>Loading...</div>;
-  }
-
-  if (score !== null) {
-    return <div>Votre score : {score}</div>;
-  }
 
   return (
     <div>
-        <div className="container mt-3">
-      <h2>{quizzes[currentQuestion].question}</h2>
-      <ul>
-        {quizzes[currentQuestion].answers.map((answer, index) => (
-          <li key={index}>
-            <button onClick={() => handleAnswer(answer.text)}>{answer.text}</button>
-          </li>
-        ))}
-      </ul>
-    </div></div>
+      <div className="content-body">
+      <h1>Qiuz</h1>
+        {quizzes.length > 0 ? (
+          <div className="card">
+            <div className="card-body">
+               
+              <h5 className="card-title">
+              <h3 className="mb-4">{quizzes[currentQuestion].question}</h3> 
+              </h5>
+              <form>
+                {quizzes[currentQuestion].options.map((option) => (
+                  <div key={option}>
+                    <input
+                      type="radio"
+                      name={`quiz-${quizzes[currentQuestion].id}-options`}
+                      value={option}
+                      checked={selectedAnswer === option}
+                      onChange={handleAnswerChange}
+                    />
+                    <label
+                      htmlFor={`quiz-${quizzes[currentQuestion].id}-options-${option}`}
+                    >
+                      {option}
+                    </label>
+                  </div>
+                ))}
+              </form>
+              {currentQuestion > 0 && (
+                <button onClick={handlePreviousQuestion}>Back</button>
+              )}
+              {currentQuestion < quizzes.length - 1 ? (
+                <button onClick={handleNextQuestion} >Next</button>
+              ) : (
+                <button onClick={handleFinish}>Finish</button>
+              )}
+             
+            </div>
+          </div>
+        ) : (
+          <p>Loading quizzes...</p>
+        )}
+        {finished && (
+          <div>
+            <h2>Quiz Finished</h2>
+            <p className="card-text">
+                Score: {score}/{quizzes.length}
+              </p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
-export default Quiz;
+export default QuizList;

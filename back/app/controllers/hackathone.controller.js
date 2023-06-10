@@ -10,7 +10,8 @@ exports.create = (req, res) => {
     return;
   }
   // Create a hackathon
-   var imagsrc = "http://localhost:5000/uploads/" + req.file.filename 
+  var imagsrc = "http://localhost:5000/uploads/" + req.file.filename
+
    // il faut changer l'adresse localhost vers ip de cluster backend  une fois tu termine le dev 
   //  var imagsrc = "http://45.42.20.101:5000/upload/" + req.file.filename 
 
