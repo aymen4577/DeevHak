@@ -19,20 +19,7 @@ const intialHack= {
       submitted: false,
     };
     const [hack, setHack] = useState(intialHack)
-    const newTutorial=()=> {
-      this.setState({
-        id: null,
-        title: "",
-        description: "",
-        Rules: "",
-        Date_début: "",
-        Date_fin:"",
-        Numbre_Equipe:"",
-        NomEntriprise:"",
-        published: false,
-        submitted: false,
-      });
-    }
+  
  const onChangeImage = (e) =>{
     setFile(e.target.files[0]);
   }

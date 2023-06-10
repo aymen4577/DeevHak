@@ -52,7 +52,7 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update User with id=${id}. Maybe User was not found!`
+          message: `Cannot update User with id=${id}. Maybe Tutorial was not found!`
         });
       } else res.send({ message: "User was updated successfully." });
     })

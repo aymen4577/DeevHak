@@ -57,13 +57,13 @@ const Login = () => {
 <div className="page-wraper">
 <div className="browse-job login-style3">
 <div className="login-form style-2">
-<div className="bg-img-fix overflow-hidden" style={{backgroundImage: 'url(images/background/bg6.jpg)', height: '100vh', backgroundRepeat:'no-repeat'}}>
-
+<div id="mCSB_1" className="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style={{ maxHeight: '653px' }} tabIndex={0}>
+  <div id="mCSB_1_container" className="mCSB_container" style={{ position: 'relative', top: 0, left: 0 }} dir="ltr">
         <div className="row gx-0">
             <div className="col-xl-4 col-lg-5 col-md-6 col-sm-12 vh-100 bg-white ">
-            <div id="mCSB_1" className="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style={{ maxHeight: '653px' }} tabIndex={0}>
+         
 
-                <div id="mCSB_1_container" className="mCSB_container" style={{ position: 'relative', top: 0, left: 0 }} dir="ltr">
+                
                
                 <div className="card-body">
                                 <div className="logo-header">
@@ -179,7 +179,7 @@ const Login = () => {
                     </div> 
                     </div>
                     </div>
-                     </div>
+                     
 
                     </div>
                 </div>
