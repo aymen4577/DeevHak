@@ -165,6 +165,7 @@ class hackathonesList extends Component {
 																	<div className="d-flex">
 																		<Link to={"/hackathone/" + Hackathon.id} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fas fa-pencil-alt"></i></Link>
                <button  onClick={()=>{this.removehackathone(Hackathon.id)}} className="btn btn-danger shadow btn-xs sharp" ><i className="fa fa-trash"></i></button>
+               <Link to={"/add"} className="btn btn-success shadow btn-xs sharp" ><i class="fa fa-plus" ></i></Link>
 																	</div>												
 																</td>		
                      									

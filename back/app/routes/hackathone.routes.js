@@ -1,27 +1,26 @@
+
 module.exports = app => {
   const hackathones = require("../controllers/hackathone.controller.js");
-
+const multer =require('multer');
   var router = require("express").Router();
-  const multer = require("multer");
-  const path = require("path");
+  //multer configurations 
+  const storage =multer.diskStorage({
+destination:(req,file ,cb )=>{
+  cb(null ,'./public/uplaods');
 
-  var storage = multer.diskStorage({
-    destination: (req, file, callBack) => {
-      callBack(null, "./public/uploads/"); // './public/images/' directory name where save the file
-    },
-    filename: (req, file, callBack) => {
-      callBack(
-        null,
-        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-      );
-    },
-  });
+},
+filename :(req ,file ,cb )=>{
 
-  var upload = multer({
-    storage: storage,
-  });
+  const fileName =`${Date.now()}_${file.originalname.replace(/\s+/g,'-')}`;
+  cb(null,fileName);
+
+}
+
+  })
+  const upload =multer({storage}).single('image');
+ 
     // Create a new hackathon  haouino c bon? bhy 3ychek sofien yrhem wldik !! hya rabi m3akom 3ychek 
-  router.post("/", upload.single("file"), hackathones.create);
+  router.post("/", upload,hackathones.create);
 
   // Retrieve all hackathons 
   router.get("/", hackathones.findAll);

@@ -76,12 +76,12 @@ function QuizList() {
                 ))}
               </form>
               {currentQuestion > 0 && (
-                <button onClick={handlePreviousQuestion}>Back</button>
+                <button onClick={handlePreviousQuestion} className="btn btn-secondary">Back</button>
               )}
               {currentQuestion < quizzes.length - 1 ? (
-                <button onClick={handleNextQuestion} >Next</button>
+                <button onClick={handleNextQuestion} className="btn btn-success" >Next</button>
               ) : (
-                <button onClick={handleFinish}>Finish</button>
+                <button onClick={handleFinish} className="btn btn-info">Finish</button>
               )}
              
             </div>

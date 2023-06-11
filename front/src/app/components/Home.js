@@ -60,8 +60,10 @@ const Home = () => {
     </ol>
           </div>
 
-          <div className="container-fluid">  
-<div className="row">
+          <div className="container-fluid">
+      <div className="row">
+        <div className="col-xl-9 wid-100">
+        <div className="row">
   <div className="col-xl-3 col-sm-6">
     <div className="card box-hover">
       <div className="card-body">
@@ -117,50 +119,95 @@ const Home = () => {
       </div>
     </div>
   </div>
-  <div className="d-flex justify-content-between align-items-center mb-3">
-    <h5 className="mb-0">That Is project </h5>
-   
-  </div>
-  {/* {hackathons &&
-              hackathons.map((tutorial) => (
-  <div className="col-xl-3 col-sm-6">
-    <div className="card box-hover">
-      <div className="card-header">
-        <h5 className="mb-0">{tutorial.title}</h5>
-      </div>
-      <div className="card-body">
-        <div className="products style-1">
-          <img src="images/contacts/pic2.jpg" className="avatar avatar-lg rounded-circle" alt=""/>
-          <div>
-            <h6>{tutorial.NomEntriprise}</h6>
-            <span>{tutorial.description}</span>	
-          </div>	
-        </div>
-        <p className="my-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-        <div>
-          <p className="text-secondary mb-1 font-w500">Team</p>
-          <div className="avatar-list avatar-list-stacked">
-            <img src="images/contacts/pic666.jpg" className="avatar rounded-circle" alt=""/>
-            <img src="images/contacts/pic555.jpg" className="avatar rounded-circle" alt=""/>
-            <img src="images/contacts/pic1.jpg" className="avatar rounded-circle" alt=""/>
-            <img src="images/contacts/pic555.jpg" className="avatar rounded-circle" alt=""/>
-            <img src="images/contacts/pic666.jpg" className="avatar rounded-circle" alt=""/>
+     
+</div>
+            
+<div class="col-xl-8">
+								<div class="card overflow-hidden">
+									<div class="card-header border-0 pb-0 flex-wrap">
+										<h4 class="heading mb-0">Projects Overview</h4>
+										<ul class="nav nav-pills mix-chart-tab" id="pills-tab" role="tablist">
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link active" data-series="week" id="pills-week-tab" data-bs-toggle="pill" data-bs-target="#pills-week" type="button" role="tab"  aria-selected="true">Week</button>
+										  </li>
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link" data-series="month" id="pills-month-tab" data-bs-toggle="pill" data-bs-target="#pills-month" type="button" role="tab"  aria-selected="false">Month</button>
+										  </li>
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link" data-series="year" id="pills-year-tab" data-bs-toggle="pill" data-bs-target="#pills-year" type="button" role="tab"  aria-selected="false">Year</button>
+										  </li>
+										   <li class="nav-item" role="presentation">
+											<button class="nav-link" data-series="all" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-selected="false">All</button>
+										  </li>
+										</ul>
+									</div>
+									<div class="card-body  p-0">
+											<div id="overiewChart"></div>
+										<div class="ttl-project">
+											<div class="pr-data">
+												<h5>{count}</h5>
+												<span>Nombre de Projet</span>
+											</div>
+											<div class="pr-data">
+												<h5 class="text-primary">{quiz}</h5>
+												<span>Nombre de Quiz</span>
+											</div>
+											<div class="pr-data">
+												<h5>{use}</h5>
+												<span>Personne </span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
           </div>
+          <div class="col-xl-3 t-earn">
+						<div class="card">
+							<div class="card-header border-0 pb-0">
+								<h4 class="heading mb-0">Total Projet</h4>
+							</div>
+							<div class="card-body px-0 overflow-hidden">
+								<div class="total-earning">
+									<h2>{count} Projets</h2>
+									<ul class="nav nav-pills mb-3 earning-tab earning-chart" id="pills-tab1" role="tablist">
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link active" data-series="day" id="pills-day-tab1" data-bs-toggle="pill" data-bs-target="#pills-day1" type="button" role="tab" aria-selected="true">Day</button>
+										  </li>
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link" id="pills-week-tab1" data-series="week" data-bs-toggle="pill" data-bs-target="#pills-week1" type="button" role="tab" aria-selected="false">Week</button>
+										  </li>
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link" id="pills-month-tab1" data-series="month" data-bs-toggle="pill" data-bs-target="#pills-month1" type="button" role="tab" aria-selected="false">Month</button>
+										  </li>
+										  <li class="nav-item" role="presentation">
+											<button class="nav-link" id="pills-year-tab1" data-series="year" data-bs-toggle="pill" data-bs-target="#pills-year1" type="button" role="tab" aria-selected="false">Year</button>
+										  </li>
+									</ul>
+									<div id="earningChart"></div>
+								</div>	
+							</div>
+						</div>
+					</div>
+        
         </div>
-        <div className="progress mt-4">
-        <div className="progress-bar bg-purple" style={{width: '60%', height: '5px', borderRadius: '4px'}} role="progressbar"></div>
-
+       
+    
+        
+        <div className="col-xl-5 bst-seller">
+          {/* Ajoutez votre contenu ici */}
+        </div>
+        <div className="col-xl-3 col-md-6 up-shd">
+          {/* Ajoutez votre contenu ici */}
+        </div>
+      
+        <div className="col-xl-9 bst-seller">
+          {/* Ajoutez votre contenu ici */}
         </div>
       </div>
     </div>
-  </div>
- 
- ))} */}
-      
-</div>
 
-</div>
-</div>
+
+
   );
 };
 

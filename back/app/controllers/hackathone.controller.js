@@ -10,11 +10,11 @@ exports.create = (req, res) => {
     return;
   }
   // Create a hackathon
-  var imagsrc = "http://localhost:5000/uploads/" + req.file.filename
+  // var imagsrc = "http://localhost:5000/uploads/" + req.file.filename ;
 
    // il faut changer l'adresse localhost vers ip de cluster backend  une fois tu termine le dev 
   //  var imagsrc = "http://45.42.20.101:5000/upload/" + req.file.filename 
-
+const {file}=req ;
   const hackathon = new Hackathon({
     title: req.body.title,
     description: req.body.description,
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     Date_fin :req.body.Date_fin,
     NomEntriprise: req.body.NomEntriprise,
     Numbre_Equipe : req.body.Numbre_Equipe,
-    image: imagsrc,
+    image: (file && file.path) || null ,
     published: req.body.published ? req.body.published : false
   });
 
@@ -32,7 +32,7 @@ exports.create = (req, res) => {
     .save(hackathon)
     .then(data => {
       res.send(data);
-      console.log('ok req done')
+    
     })
     .catch(err => {
       res.status(500).send({

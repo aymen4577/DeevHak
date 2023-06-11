@@ -68,10 +68,6 @@ const intialHack= {
     })} catch(err){console.log(err)}
  
   }
- 
-
-  
- 
     return (
       <div className="container mt-3">      
       <div className="content-body">
@@ -81,9 +77,7 @@ const intialHack= {
           <div>
             <center>
             <h4>projet ajouté avec succès</h4>
-            <button className="btn btn-success" onClick={this.newTutorial}>
-              Add
-            </button>
+           
             </center>
           </div>
         ) : (
