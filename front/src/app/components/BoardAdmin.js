@@ -49,7 +49,7 @@ const BoardAdmin = () => {
             </ul>
         </li>
       
-        <li><Link to={"/hackathonesList"} className="nav-link">
+        <li><Link to={"/ListeAdmin"} className="nav-link">
             
         
             <div className="menu-icon">
