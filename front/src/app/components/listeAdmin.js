@@ -179,7 +179,6 @@ class ListeAdmin extends Component {
                     </div>
                                           
                     <Link to={"/hackathone/" + Hackathon.id} class="dropdown-item">Accept Patient</Link>
-                              <Link to={"/formulair"} class="dropdown-item">View Details</Link>
                               <Link  onClick={()=>{this.removeAllHackathones(Hackathon.id)}} class="dropdown-item" >Supprime</Link>
 															</div>
 														</div>												
