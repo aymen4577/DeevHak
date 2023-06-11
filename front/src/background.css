@@ -9,14 +9,14 @@
     background-size: cover;
 
   }
- .container {
+ .hama {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.page-wraper {
+.register{
   max-width: 1000px; /* Adjust the width as needed */
   width: 100%;
   margin: auto;

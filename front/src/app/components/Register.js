@@ -85,8 +85,8 @@ const verificationCode = Date.now()
 <>
 <div className="background"></div>
 
-  <div className="container mt-3">
-    <div className="page-wraper">
+  <div className="hama mt-3">
+    <div className="register">
     <div className="row vh-100 d-flex justify-content-center">
         <div className="col-12 align-self-center">
             <div className="row">
