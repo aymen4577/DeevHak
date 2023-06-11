@@ -7,10 +7,20 @@
     z-index: -1;
     background-image: url('https://uploads-ssl.webflow.com/60021c8adbb9c33eb2f0a5f1/607de6c930b678b9171bed66_Main%202_1.gif'); /* Replace 'your-image-url.jpg' with the URL of your background image */
     background-size: cover;
-    
+
   }
-  .container {
-    position: relative;
-    /* Other styles */
-  }
+ .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.page-wraper {
+  max-width: 1000px; /* Adjust the width as needed */
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
   

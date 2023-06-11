@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import UserService from "../services/user.service";
 import { register } from "../slices/auth";
 import { clearMessage } from "../slices/message";
-
+import '../../../src/background.css';
 const Register = () => {
   const [successful, setSuccessful] = useState(false);
 
@@ -83,36 +83,29 @@ const verificationCode = Date.now()
 
   return (
 <>
-<div className="container mt-3">
+<div className="background"></div>
 
-<div className="page-wraper">
-<div className="browse-job login-style3">
-<div className="login-form style-2">
-
-        <div className="row gx-0">
-            <div className="col-xl-4 col-lg-5 col-md-6 col-sm-12 vh-100 bg-white ">
-            <div id="mCSB_1" className="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style={{ maxHeight: '653px' }} tabIndex={0}>
-
-                <div id="mCSB_1_container" className="mCSB_container" style={{ position: 'relative', top: 0, left: 0 }} dir="ltr">
-               
-                <div className="card-body">
-                                <div className="logo-header">
-                                  <center>
-                                <img src="4.png" alt="Admin" className="rounded-circle" width={100} /></center>
-                                </div>
+  <div className="container mt-3">
+    <div className="page-wraper">
+    <div className="row vh-100 d-flex justify-content-center">
+        <div className="col-12 align-self-center">
+            <div className="row">
+                <div className="col-lg-5 mx-auto">
+                    <div className="card">
+                    <div className="card-body p-0 auth-header-box">
+                            <div className="text-center p-3">
+                                <a href="index.html" className="logo logo-admin">
+                                    <img src="4.png" height="50" alt="logo" className="auth-logo"/>
+                                </a>
+                                <h4 className="text-muted  mb-0">Let's Get Started Dastone
+</h4>   
+                                <p className="text-muted  mb-0">Sign in to continue to DevHack.</p>  
+                            </div>
+                            </div>
+                        <div className="card-body p-0">
+                            <div className="tab-content">
                             
-                                <hr/>
-                                    <div className="nav nav-tabs border-bottom-0" id="nav-tab" role="tablist">
-                                        
-                                <div className="tab-content w-100" id="nav-tabContent">
-                                  <div className="tab-pane fade show active" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
-                                    <center>
-                                  <h3 className="form-title m-t0">   Let's Get Started DevHack</h3>
-                                  <h5>Sign up your account</h5>
-                                  </center>
-                             <hr/>
-              
- </div> 
+                                <div className="tab-pane active px-3 pt-3" id="Register_Tab" role="tabpanel">
  <Formik
            initialValues={initialValues}
            validationSchema={validationSchema}
@@ -217,7 +210,8 @@ const verificationCode = Date.now()
             {message}
           </div>
         </div>
-      )}                <div className="card-footer">
+      )}              
+      <br/>  <div className="card-footer">
       <div className=" bottom-footer clearfix m-t10 m-b20 row text-center">
       <div className="col-lg-12 text-center">
           <span> © Copyright by  <span className="heart"></span>
@@ -240,9 +234,9 @@ const verificationCode = Date.now()
                     
 </div>
 </div>
-                    </div>
-                </div>
-                </div>
+</div>
+</div>
+                
 </>
   
   );
