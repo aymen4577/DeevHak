@@ -49,7 +49,7 @@ function QuizList() {
   return (
     <div>
       <div className="content-body">
-      <h1></h1>
+      <h1>Quiz</h1>
         {quizzes.length > 0 ? (
           <div className="card">
             <div className="card-body">
