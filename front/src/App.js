@@ -16,7 +16,7 @@ import HackathonsList from "./app/components/hackathons-list";
 import AddHackathone from "./app/components/add-hackathone";
 import Hackathons from "./app/components/hackathons";
 import { logout } from "./app/slices/auth";
-
+import './background.css';
 import EventBus from "./app/common/EventBus";
 import EditProfile from "./app/components/EditProfile";
 
@@ -60,6 +60,7 @@ function App() {
   return (
    
     <Router>
+      <div className="background"></div>
       <div id="preloader">
 		<div className="lds-ripple">
 			<div></div>

@@ -61,7 +61,7 @@ const verificationCode = Date.now()
       name: username,
         email:email,
         code:verificationCode,
-        lien:"http:///20.207.87.14:8081/EmailVerification/" + res._id,
+        lien:"http:///localhost:8081/EmailVerification/" + res._id,
          //"http://20.207.87.14:8081/EmailVerificationlesd/"
         }
         UserService.verfieremail(dataemail).then(
@@ -88,7 +88,6 @@ const verificationCode = Date.now()
 <div className="page-wraper">
 <div className="browse-job login-style3">
 <div className="login-form style-2">
-<div className="bg-img-fix overflow-hidden" style={{backgroundImage: 'url(images/background/bg6.jpg)', height: '100vh', backgroundRepeat:'no-repeat'}}>
 
         <div className="row gx-0">
             <div className="col-xl-4 col-lg-5 col-md-6 col-sm-12 vh-100 bg-white ">
@@ -243,7 +242,7 @@ const verificationCode = Date.now()
 </div>
                     </div>
                 </div>
-                </div></div>
+                </div>
 </>
   
   );

@@ -19,7 +19,6 @@ module.exports = mongoose => {
     object.id = _id;
     return object;
   });
-
   const Particpant = mongoose.model("participants", schema);
   return Particpant;
 };

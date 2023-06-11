@@ -4,7 +4,7 @@ import hackathoneDataService from "../services/hackathone.service";
 
 
 const AddHackathone = ()=>  {
-  const [file, setFile] = useState();
+  const [image, setFile] = useState();
  
 const intialHack= {
       id: null,
@@ -32,7 +32,7 @@ const intialHack= {
     // console.log(hack)
     const formData = new FormData()
 
-    formData.append("file", file)
+    formData.append("imaga",image )
     formData.append("title", hack.title)
     formData.append("description", hack.description)
     formData.append("Rules", hack.Rules)

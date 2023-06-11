@@ -128,9 +128,11 @@ class hackathonesList extends Component {
               </button>
             </div>
           </div>
-        </div>
+        </div>                    <Link to={"/add"} className="btn btn-success shadow btn-xs sharp" ><i class="fa fa-plus" ></i></Link>
+
 								
 								</div>
+                
 									<div className="tab-content" id="myTabContent-2">
 										<div className="tab-pane fade show active" id="withoutSpace" role="tabpanel" aria-labelledby="home-tab-2">
 											 <div className="card-body pt-0">
