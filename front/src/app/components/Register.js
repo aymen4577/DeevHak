@@ -62,7 +62,7 @@ const verificationCode = Date.now()
         email:email,
         code:verificationCode,
         lien:"http:///20.207.87.14:8081/EmailVerification/" + res._id,
-         //"http://20.207.87.14:8081/EmailVerification/"
+         //"http://20.207.87.14:8081/EmailVerificationlesd/"
         }
         UserService.verfieremail(dataemail).then(
           (res)=>{
